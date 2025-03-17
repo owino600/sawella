@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Reservation - CAPELLA</title>
+    <link rel="icon" type="image/png" href="images/sawelalodges.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="images/sawelalodges.png" alt="Capella Logo" class="logo-img">
+            <span>CAPELLA & SAWELA LODGES</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="rooms.html">Accommodation</a>
+                <ul class="dropdown-content">
+                    <li><a href="rooms.html">Room Details</a></li>
+                    <li><a href="#stay-and-play">Stay & Play</a></li>
+                    <li><a href="#family-gateways">Family Gateways</a></li>
+                </ul>
+            </li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Booking Hero Section -->
+    <section class="booking-hero">
+        <div class="booking-hero-content">
+            <h1>Make Your Reservation</h1>
+            <p>Experience luxury and comfort at CAPELLA</p>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section">
+        <div class="booking-container">
+            <div class="booking-info">
+                <h2>Reservation Details</h2>
+                <p>Please fill in your details to complete your booking</p>
+                <div class="booking-features">
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Booking</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Flexible Payment</span>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-form">
+                <form id="reservation-form">
+                    <div class="form-group">
+                        <label for="room-type">Room Type</label>
+                        <select id="room-type" required>
+                            <option value="">Select Room Type</option>
+                            <option value="deluxe">Deluxe Suite</option>
+                            <option value="executive">Executive Suite</option>
+                            <option value="presidential">Presidential Suite</option>
+                            <option value="family">Family Suite</option>
+                            <option value="honeymoon">Honeymoon Suite</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="check-in">Check-in Date</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="check-out">Check-out Date</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="adults">Adults</label>
+                            <select id="adults" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="children">Children</label>
+                            <select id="children">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="special-requests">Special Requests</label>
+                        <textarea id="special-requests" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Confirm Reservation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About CAPELLA</h4>
+                <p>Your trusted partner in hospitality excellence and unmatched comfort.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Accommodation</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-envelope"></i> info@capella.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Street, City</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CAPELLA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

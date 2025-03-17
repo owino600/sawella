@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Sawela Lodges & Capella Resort</title>
+    <link rel="icon" type="image/png" href="images/sawelalodges.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="images/sawelalodges.png" alt="Capella Logo" class="logo-img">
+            <span>CAPELLA & SAWELA LODGES</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#accommodation">Accommodation</a>
+                <ul class="dropdown-content">
+                    <li><a href="rooms.html">Room Details</a></li>
+                    <li><a href="#stay-and-play">Stay & Play</a></li>
+                    <li><a href="#family-gateways">Family Gateways</a></li>
+                </ul>
+            </li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="gallery-hero">
+        <h1>Our Photo Gallery</h1>
+        <p>Explore the beauty and luxury of Sawela Lodges & Capella Resort</p>
+    </section>
+
+    <section class="gallery-section">
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="rooms">Rooms</button>
+            <button class="filter-btn" data-filter="dining">Dining</button>
+            <button class="filter-btn" data-filter="spa">Spa</button>
+            <button class="filter-btn" data-filter="events">Events</button>
+            <button class="filter-btn" data-filter="amenities">Amenities</button>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Rooms -->
+            <div class="gallery-item" data-category="rooms">
+                <img src="images/gallery/deluxe-suite.jpg" alt="Deluxe Suite">
+                <div class="gallery-overlay">
+                    <h3>Deluxe Suite</h3>
+                    <p>Luxury comfort at its finest</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="rooms">
+                <img src="images/gallery/executive-suite.jpg" alt="Executive Suite">
+                <div class="gallery-overlay">
+                    <h3>Executive Suite</h3>
+                    <p>Business and pleasure combined</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="rooms">
+                <img src="images/gallery/presidential-suite.jpg" alt="Presidential Suite">
+                <div class="gallery-overlay">
+                    <h3>Presidential Suite</h3>
+                    <p>Ultimate luxury experience</p>
+                </div>
+            </div>
+
+            <!-- Dining -->
+            <div class="gallery-item" data-category="dining">
+                <img src="images/gallery/restaurant.jpg" alt="Main Restaurant">
+                <div class="gallery-overlay">
+                    <h3>Main Restaurant</h3>
+                    <p>International cuisine</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="dining">
+                <img src="images/gallery/poolside-dining.jpg" alt="Poolside Dining">
+                <div class="gallery-overlay">
+                    <h3>Poolside Dining</h3>
+                    <p>Al fresco dining experience</p>
+                </div>
+            </div>
+
+            <!-- Spa -->
+            <div class="gallery-item" data-category="spa">
+                <img src="images/gallery/spa-treatment.jpg" alt="Spa Treatment">
+                <div class="gallery-overlay">
+                    <h3>Spa Treatment</h3>
+                    <p>Rejuvenating wellness</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="spa">
+                <img src="images/gallery/fitness-center.jpg" alt="Fitness Center">
+                <div class="gallery-overlay">
+                    <h3>Fitness Center</h3>
+                    <p>State-of-the-art equipment</p>
+                </div>
+            </div>
+
+            <!-- Events -->
+            <div class="gallery-item" data-category="events">
+                <img src="images/gallery/conference-hall.jpg" alt="Conference Hall">
+                <div class="gallery-overlay">
+                    <h3>Conference Hall</h3>
+                    <p>Modern meeting spaces</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="images/gallery/wedding-venue.jpg" alt="Wedding Venue">
+                <div class="gallery-overlay">
+                    <h3>Wedding Venue</h3>
+                    <p>Romantic settings</p>
+                </div>
+            </div>
+
+            <!-- Amenities -->
+            <div class="gallery-item" data-category="amenities">
+                <img src="images/gallery/pool.jpg" alt="Swimming Pool">
+                <div class="gallery-overlay">
+                    <h3>Swimming Pool</h3>
+                    <p>Infinity pool with views</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="amenities">
+                <img src="images/gallery/garden.jpg" alt="Garden">
+                <div class="gallery-overlay">
+                    <h3>Garden</h3>
+                    <p>Lush landscapes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img src="" alt="" class="lightbox-image">
+        <div class="lightbox-caption">
+            <h3></h3>
+            <p></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Company Info</h4>
+                <ul>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#press">Press</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="services.html">Dining</a></li>
+                    <li><a href="services.html#spa">Spa</a></li>
+                    <li><a href="services.html#events">Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Useful Links</h4>
+                <ul>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#sitemap">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li>123 Resort Street</li>
+                    <li>Nairobi, Kenya</li>
+                    <li>Phone: +254 123 456 789</li>
+                    <li>Email: info@sawelalodges.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="social-links">
+                <a href="https://wa.me/254758454004" target="_blank" class="social-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com/your-handle" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/your-handle" target="_blank" class="social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.tripadvisor.com/UserReviewEdit-g25777805-d26544258-Capella_Resort_Elementaita-Mbaruk_Rift_Valley_Province.html" target="_blank" class="social-icon">
+                    <img src="images/tripadvisor.jpg" alt="TripAdvisor" width="26px">
+                </a>
+            </div>
+            <p class="copyright">&copy; 2025 Sawela Lodges & Capella Resort. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js" type="module"></script>
+</body>
+</html> 

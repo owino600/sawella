@@ -292,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Enhanced Slideshow Animation
     const slides = document.querySelectorAll('.slide');
+    const hero = document.querySelector('.hero');
     const totalSlides = slides.length;
 
     if (totalSlides > 0) {
@@ -301,10 +302,14 @@ document.addEventListener('DOMContentLoaded', function() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % totalSlides;
             slides[currentSlide].classList.add('active');
+            
+            // Keep the overlay faded out for all slides
+            hero.classList.add('fade-overlay');
         }
 
         // Initialize first slide
         slides[0].classList.add('active');
+        hero.classList.add('fade-overlay');
         setInterval(showNextSlide, 5000);
     }
 

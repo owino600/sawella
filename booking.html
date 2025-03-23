@@ -71,11 +71,45 @@
                 </div>
             </div>
             <div class="booking-form">
-                <form id="reservation-form">
+                <h3>Make a Reservation</h3>
+                <!-- Booking Type Selection -->
+                <div class="form-group">
+                    <label for="booking-type">Booking Type</label>
+                    <select id="booking-type" name="booking-type" required>
+                        <option value="">Select Type</option>
+                        <option value="room">Room Booking</option>
+                        <option value="conference">Conference</option>
+                        <option value="spa">Spa Treatment</option>
+                        <option value="dining">Dining</option>
+                    </select>
+                </div>
+
+                <!-- Common Contact Fields -->
+                <div id="contact-fields" class="contact-fields" style="display: none;">
+                    <h4>Contact Information</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <!-- Room Booking Form -->
+                <form id="room-booking-form" class="booking-type-form" style="display: none;">
+                    <h4>Room Booking Details</h4>
                     <div class="form-group">
                         <label for="room-type">Room Type</label>
-                        <select id="room-type" required>
-                            <option value="">Select Room Type</option>
+                        <select id="room-type" name="room-type" required>
+                            <option value="">Select Room</option>
                             <option value="deluxe">Deluxe Suite</option>
                             <option value="executive">Executive Suite</option>
                             <option value="presidential">Presidential Suite</option>
@@ -86,17 +120,17 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="check-in">Check-in Date</label>
-                            <input type="date" id="check-in" required>
+                            <input type="date" id="check-in" name="check-in" required>
                         </div>
                         <div class="form-group">
                             <label for="check-out">Check-out Date</label>
-                            <input type="date" id="check-out" required>
+                            <input type="date" id="check-out" name="check-out" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="adults">Adults</label>
-                            <select id="adults" required>
+                            <select id="adults" name="adults" required>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -105,7 +139,7 @@
                         </div>
                         <div class="form-group">
                             <label for="children">Children</label>
-                            <select id="children">
+                            <select id="children" name="children">
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -114,22 +148,153 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    <div class="form-group">
                         <label for="special-requests">Special Requests</label>
-                        <textarea id="special-requests" rows="4"></textarea>
+                        <textarea id="special-requests" name="special-requests" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Confirm Reservation</button>
+                    <button type="submit" class="cta-button">Book Room</button>
+                </form>
+
+                <!-- Conference Booking Form -->
+                <form id="conference-booking-form" class="booking-type-form" style="display: none;">
+                    <h4>Conference Booking Details</h4>
+                    <div class="form-group">
+                        <label for="conference-type">Venue Type</label>
+                        <select id="conference-type" name="conference-type" required>
+                            <option value="">Select Venue</option>
+                            <option value="conference-hall">Conference Hall</option>
+                            <option value="meeting-room">Meeting Room</option>
+                            <option value="banquet-hall">Banquet Hall</option>
+                            <option value="outdoor">Outdoor Venue</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="conference-date">Event Date</label>
+                            <input type="date" id="conference-date" name="conference-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="conference-time">Event Time</label>
+                            <input type="time" id="conference-time" name="conference-time" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendees">Number of Attendees</label>
+                        <input type="number" id="attendees" name="attendees" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="setup-type">Setup Type</label>
+                        <select id="setup-type" name="setup-type" required>
+                            <option value="">Select Setup</option>
+                            <option value="theater">Theater Style</option>
+                            <option value="classroom">Classroom Style</option>
+                            <option value="boardroom">Boardroom Style</option>
+                            <option value="banquet">Banquet Style</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipment-needed">Equipment Needed</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="equipment" value="projector"> Projector</label>
+                            <label><input type="checkbox" name="equipment" value="sound"> Sound System</label>
+                            <label><input type="checkbox" name="equipment" value="microphone"> Microphones</label>
+                            <label><input type="checkbox" name="equipment" value="wifi"> Wi-Fi</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="catering">Catering Required</label>
+                        <select id="catering" name="catering" required>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="cta-button">Book Conference</button>
+                </form>
+
+                <!-- Spa Booking Form -->
+                <form id="spa-booking-form" class="booking-type-form" style="display: none;">
+                    <h4>Spa Treatment Booking</h4>
+                    <div class="form-group">
+                        <label for="treatment-type">Treatment Type</label>
+                        <select id="treatment-type" name="treatment-type" required>
+                            <option value="">Select Treatment</option>
+                            <option value="massage">Massage Therapy</option>
+                            <option value="facial">Facial Treatment</option>
+                            <option value="body">Body Treatment</option>
+                            <option value="wellness">Wellness Program</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="treatment-date">Preferred Date</label>
+                            <input type="date" id="treatment-date" name="treatment-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="treatment-time">Preferred Time</label>
+                            <input type="time" id="treatment-time" name="treatment-time" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="therapist-gender">Preferred Therapist Gender</label>
+                        <select id="therapist-gender" name="therapist-gender">
+                            <option value="any">No Preference</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="health-conditions">Health Conditions</label>
+                        <textarea id="health-conditions" name="health-conditions" rows="3" placeholder="Please mention any health conditions or allergies"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Book Treatment</button>
+                </form>
+
+                <!-- Dining Booking Form -->
+                <form id="dining-booking-form" class="booking-type-form" style="display: none;">
+                    <h4>Dining Reservation</h4>
+                    <div class="form-group">
+                        <label for="dining-venue">Dining Venue</label>
+                        <select id="dining-venue" name="dining-venue" required>
+                            <option value="">Select Venue</option>
+                            <option value="main-restaurant">Main Restaurant</option>
+                            <option value="poolside">Poolside Dining</option>
+                            <option value="specialty">Specialty Restaurant</option>
+                            <option value="private">Private Dining</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dining-date">Date</label>
+                            <input type="date" id="dining-date" name="dining-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dining-time">Time</label>
+                            <select id="dining-time" name="dining-time" required>
+                                <option value="">Select Time</option>
+                                <option value="breakfast">Breakfast (7:00 AM - 10:30 AM)</option>
+                                <option value="lunch">Lunch (12:00 PM - 3:00 PM)</option>
+                                <option value="dinner">Dinner (6:00 PM - 10:00 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dining-guests">Number of Guests</label>
+                        <input type="number" id="dining-guests" name="dining-guests" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="occasion">Special Occasion</label>
+                        <select id="occasion" name="occasion">
+                            <option value="none">None</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="business">Business Dinner</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dietary">Dietary Requirements</label>
+                        <textarea id="dietary" name="dietary" rows="3" placeholder="Please mention any dietary restrictions or allergies"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Book Table</button>
                 </form>
             </div>
         </div>
@@ -159,21 +324,16 @@
                     <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Street, City</li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 CAPELLA. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-tripadvisor"></i></a>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html> 

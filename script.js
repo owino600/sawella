@@ -299,8 +299,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentSlide = 0;
 
         function showNextSlide() {
+            // Remove active class from current slide
             slides[currentSlide].classList.remove('active');
+            
+            // Calculate next slide index
             currentSlide = (currentSlide + 1) % totalSlides;
+            
+            // Add active class to next slide before removing active from current
             slides[currentSlide].classList.add('active');
             
             // Keep the overlay faded out for all slides
@@ -310,7 +315,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize first slide
         slides[0].classList.add('active');
         hero.classList.add('fade-overlay');
-        setInterval(showNextSlide, 5000);
+        
+        // Start the slideshow with a shorter interval
+        setInterval(showNextSlide, 4000);
     }
 
     // Gallery Functionality

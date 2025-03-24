@@ -112,6 +112,7 @@ nav {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: #fff; /* Add white background to prevent black flash */
 }
 
 .slide {
@@ -121,17 +122,20 @@ nav {
     opacity: 0;
     transform: translateY(100%);
     transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    background: #fff; /* Add white background to prevent black flash */
 }
 
 .slide.active {
     opacity: 1;
     transform: translateY(0);
+    z-index: 1; /* Ensure active slide is above others */
 }
 
 .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block; /* Prevent image gap */
 }
 
 .hero-content {

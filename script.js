@@ -505,61 +505,92 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle booking type selection
     const bookingTypeSelect = document.getElementById('booking-type');
-    if (bookingTypeSelect) {
-        console.log('Found booking type select element');
-        bookingTypeSelect.addEventListener('change', function() {
-            const selectedType = this.value;
-            console.log('Selected booking type:', selectedType);
-            
-            const contactFields = document.getElementById('contact-fields');
-            const allForms = document.querySelectorAll('.booking-type-form');
-            
-            console.log('Number of booking forms found:', allForms.length);
-            
-            // Hide all forms first
-            allForms.forEach(form => {
-                console.log('Hiding form:', form.id);
-                form.style.cssText = 'display: none !important;';
-            });
-            
-            // Hide contact fields
-            if (contactFields) {
-                console.log('Hiding contact fields');
-                contactFields.style.cssText = 'display: none !important;';
-            }
-            
-            // Show the selected form and contact fields if a type is selected
-            if (selectedType) {
-                const selectedForm = document.getElementById(`${selectedType}-booking-form`);
-                console.log('Looking for form:', `${selectedType}-booking-form`);
-                
-                if (selectedForm) {
-                    console.log('Found form, displaying it');
-                    selectedForm.style.cssText = 'display: block !important; opacity: 1 !important; visibility: visible !important;';
-                    if (contactFields) {
-                        contactFields.style.cssText = 'display: block !important; opacity: 1 !important; visibility: visible !important;';
-                    }
-                    
-                    // Scroll to the form
-                    selectedForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                    console.warn(`Form not found for type: ${selectedType}`);
-                }
-            }
-        });
+    const roomTypeSelect = document.getElementById('room-type');
 
-        // Trigger change event if URL has type parameter
+    if (bookingTypeSelect && roomTypeSelect) {
+        console.log('Found booking type select element');
+        
+        // Define room options for each location
+        const roomOptions = {
+            sawela: [
+                { value: 'deluxe', text: 'Deluxe Suite' },
+                { value: 'executive', text: 'Executive Suite' },
+                { value: 'presidential', text: 'Presidential Suite' },
+                { value: 'family', text: 'Family Suite' },
+                { value: 'honeymoon', text: 'Honeymoon Suite' }
+            ],
+            capella: [
+                { value: 'lake-view', text: 'Lake View Suite' },
+                { value: 'deluxe', text: 'Deluxe Room' },
+                { value: 'family', text: 'Family Suite' }
+            ]
+        };
+
+        // Function to update room options based on location
+        function updateRoomOptions() {
+            const selectedLocation = document.getElementById('location').value;
+            
+            // Clear existing options
+            roomTypeSelect.innerHTML = '<option value="">Select Room</option>';
+            
+            // Add new options based on location
+            if (selectedLocation && roomOptions[selectedLocation]) {
+                roomOptions[selectedLocation].forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option.value;
+                    optionElement.textContent = option.text;
+                    roomTypeSelect.appendChild(optionElement);
+                });
+            }
+        }
+
+        // Add event listener for location change
+        const locationSelect = document.getElementById('location');
+        if (locationSelect) {
+            locationSelect.addEventListener('change', updateRoomOptions);
+        }
+
+        // Trigger initial update if URL has parameters
         const params = new URLSearchParams(window.location.search);
         const bookingType = params.get('type');
-        if (bookingType) {
-            console.log('URL has booking type:', bookingType);
+        const roomType = params.get('room');
+        const location = params.get('location');
+
+        if (bookingType && bookingTypeSelect) {
+            // Set the booking type
             bookingTypeSelect.value = bookingType;
-            // Create and dispatch the change event
-            const event = new Event('change');
-            bookingTypeSelect.dispatchEvent(event);
+            
+            // Show the appropriate form
+            const forms = document.querySelectorAll('.booking-type-form');
+            forms.forEach(form => form.style.display = 'none');
+            const selectedForm = document.getElementById(`${bookingType}-booking-form`);
+            if (selectedForm) {
+                selectedForm.style.display = 'block';
+                document.getElementById('contact-fields').style.display = 'block';
+            }
+            
+            // If it's a room booking and we have a room type, set it
+            if (bookingType === 'room' && roomType) {
+                const option = Array.from(roomTypeSelect.options).find(opt => 
+                    opt.text.toLowerCase() === roomType.toLowerCase()
+                );
+                if (option) {
+                    roomTypeSelect.value = option.value;
+                }
+            }
         }
-    } else {
-        console.warn('Booking type select element not found');
+
+        // Handle booking type change
+        bookingTypeSelect.addEventListener('change', function() {
+            const forms = document.querySelectorAll('.booking-type-form');
+            forms.forEach(form => form.style.display = 'none');
+            
+            const selectedForm = document.getElementById(`${this.value}-booking-form`);
+            if (selectedForm) {
+                selectedForm.style.display = 'block';
+                document.getElementById('contact-fields').style.display = 'block';
+            }
+        });
     }
 
     // Handle form submissions

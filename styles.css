@@ -1924,3 +1924,276 @@ html {
 .form-group textarea:focus:valid {
     box-shadow: 0 0 0 3px rgba(40,167,69,0.1);
 }
+
+/* Capella Resort Styles */
+.capella-hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/capella/hero.jpg') center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    margin-top: 80px;
+}
+
+.capella-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.capella-hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+}
+
+.capella-about {
+    padding: 5rem 2rem;
+    background: #f8f9fa;
+}
+
+.capella-about .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.capella-about h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+.capella-about p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature i {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.feature p {
+    color: #666;
+    margin: 0;
+}
+
+.capella-rooms {
+    padding: 5rem 2rem;
+}
+
+.capella-rooms .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.capella-rooms h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.room-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+}
+
+.room-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-info {
+    padding: 1.5rem;
+}
+
+.room-info h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.room-info p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.room-info ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.room-info ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #555;
+}
+
+.room-info ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #007bff;
+}
+
+.capella-gallery {
+    padding: 5rem 2rem;
+    background: #f8f9fa;
+}
+
+.capella-gallery .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.capella-gallery h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-overlay h3 {
+    margin-bottom: 0.5rem;
+}
+
+.gallery-overlay p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .capella-hero h1 {
+        font-size: 2rem;
+    }
+
+    .capella-hero p {
+        font-size: 1rem;
+    }
+
+    .capella-about,
+    .capella-rooms,
+    .capella-gallery {
+        padding: 3rem 1rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rooms-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .capella-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .capella-about h2,
+    .capella-rooms h2,
+    .capella-gallery h2 {
+        font-size: 1.5rem;
+    }
+
+    .feature {
+        padding: 1.5rem;
+    }
+
+    .room-info {
+        padding: 1rem;
+    }
+}

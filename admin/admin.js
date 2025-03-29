@@ -99,31 +99,79 @@ if (loginForm) {
     });
 }
 
+// Edit Room
+async function editRoom(id) {
+    try {
+        // TODO: Replace with actual API call
+        const room = await mockGetRoomAPI(id);
+        
+        // Populate form with room data
+        const form = document.querySelector('.room-form');
+        form.querySelector('#room-name').value = room.name;
+        form.querySelector('#room-type').value = room.type;
+        form.querySelector('#room-location').value = room.location;
+        form.querySelector('#room-price').value = room.price;
+        form.querySelector('#room-capacity').value = room.capacity;
+        form.querySelector('#room-description').value = room.description;
+        
+        // Handle amenities checkboxes
+        const amenitiesCheckboxes = form.querySelectorAll('input[name="amenities"]');
+        amenitiesCheckboxes.forEach(checkbox => {
+            checkbox.checked = room.amenities.includes(checkbox.value);
+        });
+        
+        // Show image preview if exists
+        const imagePreview = form.querySelector('.image-preview');
+        if (room.image && imagePreview) {
+            imagePreview.innerHTML = `<img src="${room.image}" alt="${room.name}">`;
+        }
+        
+        // Show modal
+        const modal = document.querySelector('.room-modal');
+        modal.classList.add('active');
+        
+        // Update form title and button
+        modal.querySelector('.modal-header h3').textContent = 'Edit Room';
+        modal.querySelector('.form-actions button[type="submit"]').textContent = 'Update Room';
+        
+        // Store room ID for update
+        form.dataset.editId = id;
+    } catch (error) {
+        showErrorMessage('Failed to load room details');
+    }
+}
+
 // Handle Room Form Submission
 const roomForm = document.querySelector('.room-form');
 if (roomForm) {
     roomForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(roomForm);
+        const isEdit = roomForm.dataset.editId;
+        
         const roomData = {
-            name: formData.get('name'),
-            type: formData.get('type'),
-            location: formData.get('location'),
-            price: formData.get('price'),
-            capacity: formData.get('capacity'),
-            description: formData.get('description'),
+            name: formData.get('room-name'),
+            type: formData.get('room-type'),
+            location: formData.get('room-location'),
+            price: formData.get('room-price'),
+            capacity: formData.get('room-capacity'),
+            description: formData.get('room-description'),
             amenities: Array.from(formData.getAll('amenities')),
-            images: formData.getAll('images')
+            image: formData.get('room-image')
         };
 
         try {
             // TODO: Replace with actual API call
-            const response = await mockAddRoomAPI(roomData);
+            const response = await (isEdit ? 
+                mockUpdateRoomAPI(roomForm.dataset.editId, roomData) : 
+                mockAddRoomAPI(roomData));
             
             if (response.success) {
-                showSuccessMessage('Room added successfully');
-                roomModal.classList.remove('active');
+                showSuccessMessage(isEdit ? 'Room updated successfully' : 'Room added successfully');
+                const modal = document.querySelector('.room-modal');
+                modal.classList.remove('active');
                 roomForm.reset();
+                delete roomForm.dataset.editId;
                 // Refresh room list
                 loadRooms();
             } else {
@@ -133,6 +181,24 @@ if (roomForm) {
             showErrorMessage('An error occurred. Please try again.');
         }
     });
+
+    // Handle image preview
+    const imageInput = roomForm.querySelector('input[type="file"]');
+    if (imageInput) {
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const imagePreview = roomForm.querySelector('.image-preview');
+                    if (imagePreview) {
+                        imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 }
 
 // Handle Gallery Form Submission
@@ -424,6 +490,35 @@ async function mockDeleteGalleryAPI(id) {
             resolve({
                 success: true,
                 message: 'Image deleted successfully'
+            });
+        }, 1000);
+    });
+}
+
+async function mockGetRoomAPI(id) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                id: id,
+                name: 'Lake View Suite',
+                type: 'Suite',
+                location: 'Sawela Lodges',
+                price: 250,
+                capacity: 2,
+                description: 'Beautiful suite with lake view',
+                amenities: ['WiFi', 'TV', 'Air Conditioning', 'Mini Bar'],
+                image: 'images/rooms/lake-view-suite.jpg'
+            });
+        }, 500);
+    });
+}
+
+async function mockUpdateRoomAPI(id, roomData) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                success: true,
+                message: 'Room updated successfully'
             });
         }, 1000);
     });

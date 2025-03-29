@@ -181,49 +181,90 @@
     </div>
 
     <!-- Modals -->
-    <div id="add-room-modal" class="admin-modal">
+    <div class="admin-modal room-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Add New Room</h3>
                 <button class="close-modal">&times;</button>
             </div>
-            <form id="add-room-form" class="admin-form">
-                <div class="form-group">
-                    <label for="room-name">Room Name</label>
-                    <input type="text" id="room-name" name="room-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="room-location">Location</label>
-                    <select id="room-location" name="room-location" required>
-                        <option value="sawela">Sawela Lodges</option>
-                        <option value="capella">Capella Resort</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="room-price">Price</label>
-                    <input type="number" id="room-price" name="room-price" required>
-                </div>
-                <div class="form-group">
-                    <label for="room-capacity">Capacity</label>
-                    <input type="number" id="room-capacity" name="room-capacity" required>
-                </div>
-                <div class="form-group">
-                    <label for="room-description">Description</label>
-                    <textarea id="room-description" name="room-description" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="room-images">Room Images</label>
-                    <input type="file" id="room-images" name="room-images" multiple accept="image/*">
-                </div>
-                <div class="form-group">
-                    <label for="room-amenities">Amenities</label>
-                    <div class="amenities-grid">
-                        <!-- Amenities checkboxes will be dynamically populated -->
+            <form class="room-form">
+                <div class="room-form-container">
+                    <div class="room-form-image">
+                        <div class="image-preview">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" name="room-image" id="room-image" accept="image/*" style="display: none;">
+                        </div>
                     </div>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="admin-btn">Save Room</button>
-                    <button type="button" class="admin-btn secondary close-modal">Cancel</button>
+                    <div class="room-form-details">
+                        <div class="form-group">
+                            <label for="room-name">Room Name</label>
+                            <input type="text" id="room-name" name="room-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-type">Room Type</label>
+                            <select id="room-type" name="room-type" required>
+                                <option value="">Select Type</option>
+                                <option value="Suite">Suite</option>
+                                <option value="Standard">Standard</option>
+                                <option value="Deluxe">Deluxe</option>
+                                <option value="Executive">Executive</option>
+                                <option value="Presidential">Presidential</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-location">Location</label>
+                            <select id="room-location" name="room-location" required>
+                                <option value="">Select Location</option>
+                                <option value="Sawela Lodges">Sawela Lodges</option>
+                                <option value="Capella Resort">Capella Resort</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-price">Price per Night</label>
+                            <input type="number" id="room-price" name="room-price" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-capacity">Capacity</label>
+                            <input type="number" id="room-capacity" name="room-capacity" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-description">Description</label>
+                            <textarea id="room-description" name="room-description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Amenities</label>
+                            <div class="amenities-group">
+                                <label class="amenity-checkbox">
+                                    <input type="checkbox" name="amenities" value="WiFi"> WiFi
+                                </label>
+                                <label class="amenity-checkbox">
+                                    <input type="checkbox" name="amenities" value="TV"> TV
+                                </label>
+                                <label class="amenity-checkbox">
+                                    <input type="checkbox" name="amenities" value="Air Conditioning"> Air Conditioning
+                                </label>
+                                <label class="amenity-checkbox">
+                                    <input type="checkbox" name="amenities" value="Mini Bar"> Mini Bar
+                                </label>
+                                <label class="amenity-checkbox">
+                                    <input type="checkbox" name="amenities" value="Safe"> Safe
+                                </label>
+                                <label class="amenity-checkbox">
+                                    <input type="checkbox" name="amenities" value="Balcony"> Balcony
+                                </label>
+                                <label class="amenity-checkbox">
+                                    <input type="checkbox" name="amenities" value="Ocean View"> Ocean View
+                                </label>
+                                <label class="amenity-checkbox">
+                                    <input type="checkbox" name="amenities" value="Kitchen"> Kitchen
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit">Add Room</button>
+                            <button type="button" class="cancel-btn">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -266,8 +307,8 @@
                     <input type="file" id="gallery-image" name="gallery-image" accept="image/*" required>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="admin-btn">Save Image</button>
-                    <button type="button" class="admin-btn secondary close-modal">Cancel</button>
+                    <button type="submit">Add Image</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </form>
         </div>

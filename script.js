@@ -322,10 +322,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Gallery Functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryItems = document.querySelector('.gallery-grid');
     const lightbox = document.getElementById('lightbox');
 
-    if (filterButtons.length > 0 && galleryItems.length > 0) {
+    async function loadGallery() {
+        try {
+            const response = await fetch('http://localhost:5000/api/gallery');
+            const result = await response.json();
+            
+            if (result.success) {
+                displayGalleryItems(result.data);
+                setupGalleryFilters(result.data);
+            } else {
+                console.error('Failed to load gallery:', result.message);
+            }
+        } catch (error) {
+            console.error('Error loading gallery:', error);
+        }
+    }
+
+    function displayGalleryItems(items) {
+        if (!galleryItems) return;
+        
+        galleryItems.innerHTML = items.map(item => `
+            <div class="gallery-item" data-category="${item.category.toLowerCase()}">
+                <img src="${item.image}" alt="${item.title}">
+                <div class="gallery-overlay">
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function setupGalleryFilters(items) {
+        if (!filterButtons || !galleryItems) return;
+
+        // Get unique categories
+        const categories = [...new Set(items.map(item => item.category.toLowerCase()))];
+        
+        // Update filter buttons
+        filterButtons.forEach(button => {
+            const filter = button.getAttribute('data-filter');
+            if (filter === 'all' || categories.includes(filter)) {
+                button.style.display = 'inline-block';
+            } else {
+                button.style.display = 'none';
+            }
+        });
+
+        // Add click handlers
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Remove active class from all buttons
@@ -334,6 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.classList.add('active');
 
                 const filter = button.getAttribute('data-filter');
+                const galleryItems = document.querySelectorAll('.gallery-item');
 
                 galleryItems.forEach(item => {
                     if (filter === 'all' || item.getAttribute('data-category') === filter) {
@@ -344,50 +391,59 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
+    }
 
-        if (lightbox) {
-            const lightboxImage = lightbox.querySelector('.lightbox-image');
-            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
-            const closeLightbox = lightbox.querySelector('.close-lightbox');
+    // Lightbox functionality
+    if (lightbox) {
+        const lightboxImage = lightbox.querySelector('.lightbox-image');
+        const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+        const closeLightbox = lightbox.querySelector('.close-lightbox');
 
-            galleryItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const img = item.querySelector('img');
-                    const title = item.querySelector('h3')?.textContent || '';
-                    const description = item.querySelector('p')?.textContent || '';
+        document.addEventListener('click', (e) => {
+            const galleryItem = e.target.closest('.gallery-item');
+            if (galleryItem) {
+                const img = galleryItem.querySelector('img');
+                const title = galleryItem.querySelector('h3')?.textContent || '';
+                const description = galleryItem.querySelector('p')?.textContent || '';
 
-                    if (lightboxImage) lightboxImage.src = img.src;
-                    if (lightboxImage) lightboxImage.alt = img.alt;
-                    if (lightboxCaption) {
-                        const titleEl = lightboxCaption.querySelector('h3');
-                        const descEl = lightboxCaption.querySelector('p');
-                        if (titleEl) titleEl.textContent = title;
-                        if (descEl) descEl.textContent = description;
-                    }
-                    lightbox.classList.add('active');
-                });
-            });
-
-            if (closeLightbox) {
-                closeLightbox.addEventListener('click', () => {
-                    lightbox.classList.remove('active');
-                });
+                if (lightboxImage) lightboxImage.src = img.src;
+                if (lightboxImage) lightboxImage.alt = img.alt;
+                if (lightboxCaption) {
+                    const titleEl = lightboxCaption.querySelector('h3');
+                    const descEl = lightboxCaption.querySelector('p');
+                    if (titleEl) titleEl.textContent = title;
+                    if (descEl) descEl.textContent = description;
+                }
+                lightbox.classList.add('active');
             }
+        });
 
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
-                }
-            });
-
-            // Close lightbox with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                    lightbox.classList.remove('active');
-                }
+        if (closeLightbox) {
+            closeLightbox.addEventListener('click', () => {
+                lightbox.classList.remove('active');
             });
         }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+            }
+        });
     }
+
+    // Load gallery on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        if (document.querySelector('.gallery-section')) {
+            loadGallery();
+        }
+    });
 
     // Handle Booking Forms
     const roomBookingForm = document.getElementById('room-booking-form');
